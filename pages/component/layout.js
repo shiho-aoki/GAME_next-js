@@ -45,7 +45,7 @@ export default function Layoyt({ children, home }){
                         <a>
                             <Image 
                                 priority
-                                src="../profile.jpg"
+                                src="/profile.jpg"
                                 className={utilStyles.borderCircle}
                                 height={108}
                                 width={108}

@@ -4,19 +4,40 @@ import Link from 'next/link';
 import Layoyt, {siteTitle} from './component/layout';
 import utilStyles from './styles/utils.module.css';
 
-export default function Home() {
+import { getSortedPostData } from '../lib/posts';
+
+export async function getStaticProps(){
+  const allPostsData = getSortedPostData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
+}
+
+export default function Home({ allPostsData }) {
   return (
     <Layoyt home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[My Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <ul className={utilStyles.list}>
+          {allPostsData.map( ({ id, data, title })=>(
+            <li className={utilStyles.listItem} key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {data}
+            </li>
+          ))}
+        </ul>
       </section>
+      <Link href="/posts/first-post">
+        <a>First Page</a>
+      </Link>
     </Layoyt>
   )
 }
