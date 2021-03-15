@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-import Layoyt, {siteTitle} from './component/layout';
-import utilStyles from './styles/utils.module.css';
+import Layoyt, {siteTitle} from '../components/layout';
+import utilStyles from '../styles/utils.module.css';
 
 import { getSortedPostData } from '../lib/posts';
 
