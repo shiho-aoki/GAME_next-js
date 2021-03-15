@@ -1,16 +1,21 @@
 import Head from "next/head";
 
 import Layout from '../component/layout';
-import { getAllPostIds } from '../../lib/posts';
+import { getAllPostIds, getPostData } from '../../lib/posts';
 
-export default function Post() {
+export default function Post({ postData }) {
     return(
         <Layout>
             <Head><title>Second post</title></Head>
             <h1>Second Post</h1>
+            {postData.title}
+            <br />
+            {postData.id}
+            <br />
+            {postData.data}
         </Layout>
     )
-}
+};
 
 export async function getStaticPaths(){
     const paths = getAllPostIds();
@@ -18,6 +23,13 @@ export async function getStaticPaths(){
         paths,
         fallback: false
     }
-}
+};
 
-export async function getStaticProps( {params} ){}
+export async function getStaticProps( {params} ){
+    const postData = getPostData(params.id);
+    return {
+        props:{
+            postData
+        }
+    }
+};
