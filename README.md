@@ -5,3 +5,6 @@ This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 
 2. if you use getStaticProps
 $ npm install gray-matter
+
+3. For TypeScript (If you’re using npm)
+npm install --save-dev typescript @types/react @types/node
